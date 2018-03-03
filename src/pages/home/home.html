@@ -1,25 +1,18 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
+  <ion-navbar style="text-align: center">
+    <img src="assets/imgs/title.png" alt="tilte">
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-fab top right edge>
-    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
-    </ion-fab-list>
+  <ion-fab left bottom>
+    <button ion-fab color="light" (click)="openQrCode()"><ion-icon name="md-qr-scanner"></ion-icon></button>
   </ion-fab>
   <agm-map [latitude]="45.734146" [longitude]="4.836135" [zoom]="13">
-    <agm-marker *ngFor="let store of stores" [latitude]="store.coordinates.lat" [longitude]="store.coordinates.long">
-      <agm-info-window>{{ store.name }}</agm-info-window>
+    <agm-marker (markerClick)="openDetails(store)"
+                *ngFor="let store of stores"
+                [latitude]="store.coordinates.lat"
+                [longitude]="store.coordinates.long" [iconUrl]="'assets/imgs/pin_bleu.png'">
     </agm-marker>
   </agm-map>
 </ion-content>
