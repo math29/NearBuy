@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {AgmCoreModule} from '@agm/core';
+import {StoresService} from '../services/stores.service';
+import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import {AgmCoreModule} from '@agm/core';
     ListPage
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
@@ -32,7 +35,9 @@ import {AgmCoreModule} from '@agm/core';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HttpClient,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    StoresService
   ]
 })
 export class AppModule {}

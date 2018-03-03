@@ -8,7 +8,18 @@
 </ion-header>
 
 <ion-content padding>
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <ion-fab top right edge>
+    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <agm-map [latitude]="45.734146" [longitude]="4.836135" [zoom]="13">
+    <agm-marker *ngFor="let store of stores" [latitude]="store.coordinates.lat" [longitude]="store.coordinates.long">
+      <agm-info-window>{{ store.name }}</agm-info-window>
+    </agm-marker>
   </agm-map>
 </ion-content>
